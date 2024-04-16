@@ -1,0 +1,26 @@
+<script>
+	import { wtitable } from '/svelte/store';
+	let selectedDate = writable('');
+	function handleDateChange(event) { selectedDate.set(event.target.value); }
+</script>
+
+<main>
+	<h1>Форма с выбором даты:</h1>
+	<form>
+		<label for="datePicker">Выберите
+			дату: </label>
+		<input type="date" id="datePicker" on: change={handleDateChange} bind:value={$selectedDate} />
+	</form>
+	{#if $selectedDate}
+	<p>Выбранная дата: {$selectedDate}</p>
+	{/if}
+</main>
+<style>
+	form {
+		margin-bottom: 20px;
+	}
+
+	label {
+		font-weight: bold;
+	}
+</style>
